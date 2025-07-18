@@ -1,3 +1,4 @@
-export { default as useContactForm } from './useContactForm';
-export { default as useToast } from './useToast';
-export { default as useModal } from './useModal';
+
+export { useContactForm } from './useContactForm';
+export { useToast } from './useToast';
+export { useModal } from './useModal';

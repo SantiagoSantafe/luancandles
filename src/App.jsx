@@ -4,7 +4,6 @@ import { Hero, Products, About, Services, Contact } from './components/sections'
 import { AppProvider, ContactProvider } from './context';
 import { useToast } from './hooks';
 import { Toast } from './components/ui';
-import './styles/globals.css';
 
 // Main App component with toast functionality
 const AppContent = () => {
@@ -27,7 +26,7 @@ const AppContent = () => {
       {/* Contact Section */}
       <Contact />
       
-      {/* Global Toast Component */}
+      {/* Global Toast Component - PROPS CORREGIDAS */}
       <Toast
         message={toast.message}
         type={toast.type}

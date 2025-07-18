@@ -1,37 +1,36 @@
 import React from 'react';
 
 const Button = ({ 
-  children, 
   variant = 'primary', 
-  size = 'md', 
-  disabled = false, 
+  size = 'medium', 
+  children, 
   onClick, 
-  type = 'button',
+  disabled = false,
   className = '',
+  type = 'button',
   ...props 
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseClasses = 'inline-flex items-center justify-center font-secondary font-medium rounded-xl transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-luan-gold-200 disabled:opacity-50 disabled:cursor-not-allowed';
   
-  const variants = {
-    primary: 'bg-amber-600 hover:bg-amber-700 text-white focus:ring-amber-500',
-    secondary: 'bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500',
-    outline: 'border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white focus:ring-amber-500',
+  const variantClasses = {
+    primary: 'bg-gradient-to-r from-luan-gold-400 to-luan-gold-600 hover:from-luan-gold-500 hover:to-luan-gold-700 text-white shadow-gold hover:shadow-gold-hover hover:-translate-y-1 active:translate-y-0',
+    secondary: 'bg-transparent border-2 border-luan-gold-400 text-luan-gold-600 hover:bg-luan-gold-400 hover:text-white hover:border-luan-gold-400 hover:-translate-y-1',
+    ghost: 'bg-transparent border border-luan-cream-300 text-luan-black-700 hover:border-luan-gold-400 hover:text-luan-gold-600',
+    outline: 'bg-white border-2 border-luan-black-200 text-luan-black-800 hover:border-luan-gold-400 hover:text-luan-gold-600 shadow-sm hover:shadow-md',
   };
   
-  const sizes = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg',
+  const sizeClasses = {
+    small: 'px-4 py-2 text-sm',
+    medium: 'px-6 py-3 text-base',
+    large: 'px-8 py-4 text-lg',
   };
-  
-  const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`;
   
   return (
-    <button
+    <button 
       type={type}
-      disabled={disabled}
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
       onClick={onClick}
-      className={classes}
+      disabled={disabled}
       {...props}
     >
       {children}

@@ -1,146 +1,71 @@
-import React, { useState } from 'react';
-import { Button, Modal } from '../ui';
+import React from 'react';
+import Button from '../ui/Button';
 
-const ProductCard = ({ product }) => {
-  const [showModal, setShowModal] = useState(false);
-
+const ProductCard = ({ product, className = '' }) => {
   return (
-    <>
-      <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
-        {/* Product Image */}
-        <div className="relative overflow-hidden">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-            <button
-              onClick={() => setShowModal(true)}
-              className="bg-white text-gray-900 px-4 py-2 rounded-lg font-medium opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
-            >
-              Ver Detalles
-            </button>
+    <div className={`group relative bg-white rounded-2xl overflow-hidden shadow-elegant hover:shadow-elegant-hover transition-all duration-500 border border-luan-cream-200 hover:border-luan-gold-200 hover:-translate-y-2 ${className}`}>
+      <div className="absolute inset-0 bg-gradient-to-br from-luan-gold-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      {/* Imagen del producto */}
+      <div className="relative overflow-hidden">
+        <img 
+          src={product.image} 
+          alt={product.name}
+          className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        
+        {/* Overlay con efecto shimmer */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000 ease-out"></div>
+        
+        {/* Badge de descuento */}
+        {product.discount && (
+          <div className="absolute top-4 left-4 bg-luan-rose-300 text-white px-3 py-1 rounded-full text-sm font-medium">
+            -{product.discount}%
           </div>
-          
-          {/* Category Badge */}
-          <div className="absolute top-4 left-4">
-            <span className="bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-              {product.category === 'aromatherapy' && 'Aromaterapia'}
-              {product.category === 'decorative' && 'Decorativa'}
-              {product.category === 'seasonal' && 'Temporada'}
-              {product.category === 'custom' && 'Personalizada'}
-            </span>
-          </div>
+        )}
+        
+        {/* Botón de favorito */}
+        <button className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110">
+          <svg className="w-5 h-5 text-luan-black-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </button>
+      </div>
+      
+      {/* Contenido */}
+      <div className="p-6">
+        <div className="mb-2">
+          <span className="text-xs font-medium text-luan-gold-600 uppercase tracking-wider">
+            {product.category}
+          </span>
         </div>
-
-        {/* Product Info */}
-        <div className="p-6">
-          <h3 className="text-xl font-bold text-gray-900 mb-2">
-            {product.name}
-          </h3>
-          <p className="text-gray-600 mb-4">
-            {product.description}
-          </p>
-          
-          <div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-amber-600">
-              ${product.price}
+        
+        <h3 className="font-secondary text-xl font-semibold text-luan-black-900 mb-2 group-hover:text-luan-gold-600 transition-colors">
+          {product.name}
+        </h3>
+        
+        <p className="text-sm text-luan-black-600 mb-4 line-clamp-2">
+          {product.description}
+        </p>
+        
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            {product.originalPrice && (
+              <span className="text-sm text-luan-black-400 line-through">
+                ${product.originalPrice.toLocaleString()}
+              </span>
+            )}
+            <span className="text-lg font-semibold text-luan-gold-600">
+              ${product.price.toLocaleString()}
             </span>
-            <Button size="sm">
-              Agregar al Carrito
-            </Button>
           </div>
+          
+          <Button size="small" className="text-sm">
+            Agregar
+          </Button>
         </div>
       </div>
-
-      {/* Product Modal */}
-      <Modal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        title={product.name}
-        size="lg"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Product Image */}
-          <div>
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full rounded-lg"
-            />
-          </div>
-
-          {/* Product Details */}
-          <div>
-            <div className="mb-4">
-              <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">
-                {product.category === 'aromatherapy' && 'Aromaterapia'}
-                {product.category === 'decorative' && 'Decorativa'}
-                {product.category === 'seasonal' && 'Temporada'}
-                {product.category === 'custom' && 'Personalizada'}
-              </span>
-            </div>
-            
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              {product.description}
-            </p>
-
-            {/* Features */}
-            <div className="mb-6">
-              <h4 className="font-semibold text-gray-900 mb-3">Características:</h4>
-              <ul className="space-y-2">
-                <li className="flex items-center text-gray-600">
-                  <svg className="w-4 h-4 text-amber-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Cera de soja 100% natural
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <svg className="w-4 h-4 text-amber-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Mecha de algodón sin plomo
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <svg className="w-4 h-4 text-amber-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Duración aproximada: 40-50 horas
-                </li>
-                <li className="flex items-center text-gray-600">
-                  <svg className="w-4 h-4 text-amber-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  Empaque eco-amigable
-                </li>
-              </ul>
-            </div>
-
-            {/* Price and Actions */}
-            <div className="border-t pt-6">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-3xl font-bold text-amber-600">
-                  ${product.price}
-                </span>
-                <span className="text-sm text-gray-500">
-                  Envío gratuito en pedidos +$50
-                </span>
-              </div>
-              
-              <div className="flex gap-3">
-                <Button className="flex-1">
-                  Agregar al Carrito
-                </Button>
-                <Button variant="outline">
-                  ❤️
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Modal>
-    </>
+    </div>
   );
 };
 

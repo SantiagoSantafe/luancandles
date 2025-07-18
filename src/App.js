@@ -4,7 +4,6 @@ import { Hero, Products, About, Services, Contact } from './components/sections'
 import { AppProvider, ContactProvider } from './context';
 import { useToast } from './hooks';
 import { Toast } from './components/ui';
-import './styles/globals.css';
 
 // Main App component with toast functionality
 const AppContent = () => {

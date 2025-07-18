@@ -1,106 +1,184 @@
 import React from 'react';
+import { NAVIGATION_ITEMS } from '../../data/navigation';
+import { SOCIAL_LINKS } from '../../data/contact';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { name: 'Facebook', icon: 'facebook', url: '#' },
-    { name: 'Instagram', icon: 'instagram', url: '#' },
-    { name: 'WhatsApp', icon: 'whatsapp', url: '#' },
-  ];
-
-  const quickLinks = [
-    { label: 'Inicio', href: '#hero' },
-    { label: 'Productos', href: '#products' },
-    { label: 'Servicios', href: '#services' },
-    { label: 'Nosotros', href: '#about' },
-    { label: 'Contacto', href: '#contact' },
+  const productCategories = [
+    'Recordatorios',
+    'Souvenirs Empresariales', 
+    'Velas Premium',
+    'Velas Aromáticas'
   ];
 
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-4">
-              <img 
-                src="/logo192.png" 
-                alt="Luan Candles" 
-                className="h-10 w-10 mr-3"
-              />
-              <h3 className="text-2xl font-bold text-amber-400">Luan Candles</h3>
-            </div>
-            <p className="text-gray-300 mb-4">
-              Creamos velas artesanales únicas que transforman cualquier espacio en un ambiente 
-              cálido y acogedor. Cada vela está hecha con amor y dedicación.
-            </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.url}
-                  className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center hover:bg-amber-700 transition-colors"
-                  aria-label={link.name}
-                >
-                  <span className="text-sm font-bold">
-                    {link.icon === 'facebook' && 'f'}
-                    {link.icon === 'instagram' && 'i'}
-                    {link.icon === 'whatsapp' && 'w'}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-amber-400">Enlaces Rápidos</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.label}>
+    <footer className="bg-luan-black-950 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Contenido principal del footer */}
+        <div className="py-16 lg:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            
+            {/* Información de la marca */}
+            <div className="lg:col-span-2">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-luan-gold-400 to-luan-gold-600 rounded-full flex items-center justify-center">
+                  <span className="text-white font-heading text-2xl font-bold">L</span>
+                </div>
+                <span className="font-heading text-2xl font-semibold">Luan Candles</span>
+              </div>
+              
+              <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
+                Velas artesanales premium elaboradas con amor en Colombia. Iluminamos momentos especiales 
+                creando atmósferas únicas para cada ocasión.
+              </p>
+              
+              {/* Información de contacto */}
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center space-x-3">
+                  <svg className="w-5 h-5 text-luan-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span className="text-gray-300">Zipaquirá, Colombia</span>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <svg className="w-5 h-5 text-luan-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 012.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span className="text-gray-300">info@luancandles.com</span>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <svg className="w-5 h-5 text-luan-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span className="text-gray-300">+57 300 123 4567</span>
+                </div>
+              </div>
+              
+              {/* Redes sociales */}
+              <div className="flex space-x-4">
+                {SOCIAL_LINKS.map((social) => (
                   <a
-                    href={link.href}
-                    className="text-gray-300 hover:text-amber-400 transition-colors"
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-luan-black-800 hover:bg-luan-gold-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                   >
-                    {link.label}
+                    <span className="text-lg group-hover:scale-110 transition-transform">{social.icon}</span>
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-amber-400">Contacto</h4>
-            <div className="space-y-2 text-gray-300">
-              <p className="flex items-center">
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                </svg>
-                info@luancandles.com
-              </p>
-              <p className="flex items-center">
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                </svg>
-                Ciudad, País
-              </p>
-              <p className="flex items-center">
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                </svg>
-                +1 (555) 123-4567
-              </p>
+                ))}
+              </div>
+            </div>
+            
+            {/* Enlaces rápidos */}
+            <div>
+              <h4 className="font-secondary text-lg font-semibold mb-6 text-luan-gold-400">
+                Enlaces Rápidos
+              </h4>
+              <ul className="space-y-3">
+                {NAVIGATION_ITEMS.map((link) => (
+                  <li key={link.id}>
+                    <a
+                      href={link.href}
+                      className="text-gray-300 hover:text-luan-gold-400 transition-colors duration-200 flex items-center group"
+                    >
+                      <span className="w-1.5 h-1.5 bg-luan-gold-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Categorías */}
+            <div>
+              <h4 className="font-secondary text-lg font-semibold mb-6 text-luan-gold-400">
+                Nuestros Productos
+              </h4>
+              <ul className="space-y-3">
+                {productCategories.map((category) => (
+                  <li key={category}>
+                    <a
+                      href="#productos"
+                      className="text-gray-300 hover:text-luan-gold-400 transition-colors duration-200 flex items-center group"
+                    >
+                      <span className="w-1.5 h-1.5 bg-luan-gold-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                      {category}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
-
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
-            © {currentYear} Luan Candles. Todos los derechos reservados.
-          </p>
+        
+        {/* Sección de certificaciones y sellos */}
+        <div className="py-8 border-t border-luan-black-800">
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                  </svg>
+                </div>
+                <span className="text-sm text-gray-300">100% Artesanal</span>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs">🌿</span>
+                </div>
+                <span className="text-sm text-gray-300">Eco-Friendly</span>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs">🏆</span>
+                </div>
+                <span className="text-sm text-gray-300">Calidad Premium</span>
+              </div>
+            </div>
+            
+            <div className="text-sm text-gray-400">
+              Envíos a toda Colombia
+            </div>
+          </div>
+        </div>
+        
+        {/* Copyright */}
+        <div className="py-6 border-t border-luan-black-800">
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <p className="text-sm text-gray-400">
+              © 2024 Luan Candles. Todos los derechos reservados.
+            </p>
+            
+            <div className="flex items-center space-x-6 text-sm text-gray-400">
+              <button 
+                type="button"
+                className="hover:text-luan-gold-400 transition-colors cursor-pointer"
+                onClick={() => console.log('Política de Privacidad')}
+              >
+                Política de Privacidad
+              </button>
+              <button 
+                type="button"
+                className="hover:text-luan-gold-400 transition-colors cursor-pointer"
+                onClick={() => console.log('Términos y Condiciones')}
+              >
+                Términos y Condiciones
+              </button>
+              <button 
+                type="button"
+                className="hover:text-luan-gold-400 transition-colors cursor-pointer"
+                onClick={() => console.log('Política de Devoluciones')}
+              >
+                Política de Devoluciones
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

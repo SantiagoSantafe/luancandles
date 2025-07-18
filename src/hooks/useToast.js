@@ -1,47 +1,31 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
-const useToast = () => {
+export const useToast = () => {
   const [toast, setToast] = useState({
-    isVisible: false,
     message: '',
-    type: 'info'
+    type: 'success',
+    isVisible: false
   });
 
-  const showToast = (message, type = 'info', duration = 5000) => {
+  const showToast = useCallback((message, type = 'success', duration = 3000) => {
     setToast({
-      isVisible: true,
       message,
-      type
+      type,
+      isVisible: true
     });
+    
+    setTimeout(() => {
+      setToast(prev => ({ ...prev, isVisible: false }));
+    }, duration);
+  }, []);
 
-    if (duration > 0) {
-      setTimeout(() => {
-        hideToast();
-      }, duration);
-    }
-  };
-
-  const hideToast = () => {
-    setToast(prev => ({
-      ...prev,
-      isVisible: false
-    }));
-  };
-
-  const showSuccess = (message, duration) => showToast(message, 'success', duration);
-  const showError = (message, duration) => showToast(message, 'error', duration);
-  const showWarning = (message, duration) => showToast(message, 'warning', duration);
-  const showInfo = (message, duration) => showToast(message, 'info', duration);
+  const hideToast = useCallback(() => {
+    setToast(prev => ({ ...prev, isVisible: false }));
+  }, []);
 
   return {
     toast,
     showToast,
-    hideToast,
-    showSuccess,
-    showError,
-    showWarning,
-    showInfo
+    hideToast
   };
 };
-
-export default useToast;

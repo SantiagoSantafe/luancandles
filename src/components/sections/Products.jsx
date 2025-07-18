@@ -1,118 +1,57 @@
 import React, { useState } from 'react';
-import { ProductCard } from '../common';
+import { PRODUCT_FILTERS, MOCK_PRODUCTS } from '../../data/products';
+import ProductCard from '../common/ProductCard';
+import Button from '../ui/Button';
 
 const Products = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const categories = [
-    { id: 'all', name: 'Todas' },
-    { id: 'aromatherapy', name: 'Aromaterapia' },
-    { id: 'decorative', name: 'Decorativas' },
-    { id: 'seasonal', name: 'Temporada' },
-    { id: 'custom', name: 'Personalizadas' },
-  ];
-
-  const products = [
-    {
-      id: 1,
-      name: 'Vela de Lavanda',
-      category: 'aromatherapy',
-      price: 25.99,
-      image: '/api/placeholder/300/300',
-      description: 'Vela relajante con aceite esencial de lavanda'
-    },
-    {
-      id: 2,
-      name: 'Vela Decorativa Rosa',
-      category: 'decorative',
-      price: 32.99,
-      image: '/api/placeholder/300/300',
-      description: 'Hermosa vela decorativa en forma de rosa'
-    },
-    {
-      id: 3,
-      name: 'Vela Navideña',
-      category: 'seasonal',
-      price: 28.99,
-      image: '/api/placeholder/300/300',
-      description: 'Vela especial con aroma a canela y naranja'
-    },
-    {
-      id: 4,
-      name: 'Vela Personalizada',
-      category: 'custom',
-      price: 45.99,
-      image: '/api/placeholder/300/300',
-      description: 'Vela hecha a medida con tu fragancia favorita'
-    },
-    {
-      id: 5,
-      name: 'Vela de Eucalipto',
-      category: 'aromatherapy',
-      price: 29.99,
-      image: '/api/placeholder/300/300',
-      description: 'Vela energizante con aceite de eucalipto'
-    },
-    {
-      id: 6,
-      name: 'Vela Minimalista',
-      category: 'decorative',
-      price: 35.99,
-      image: '/api/placeholder/300/300',
-      description: 'Vela elegante de diseño minimalista'
-    },
-  ];
-
-  const filteredProducts = activeCategory === 'all' 
-    ? products 
-    : products.filter(product => product.category === activeCategory);
+  const [activeFilter, setActiveFilter] = useState('todos');
+  
+  const filteredProducts = activeFilter === 'todos' 
+    ? MOCK_PRODUCTS 
+    : MOCK_PRODUCTS.filter(product => product.category === activeFilter);
 
   return (
-    <section id="products" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
+    <section id="productos" className="py-16 lg:py-24 bg-gradient-to-b from-white to-luan-cream-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Nuestros Productos
+          <h2 className="text-4xl lg:text-5xl font-heading font-medium text-luan-black-950 mb-4">
+            Nuestras <span className="bg-gradient-to-r from-luan-gold-500 to-luan-gold-700 bg-clip-text text-transparent">Creaciones</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explora nuestra cuidadosa selección de velas artesanales, cada una 
-            creada con amor y atención al detalle para brindarte la mejor experiencia.
+          <p className="text-lg text-luan-black-700 max-w-3xl mx-auto">
+            Cada vela es única, elaborada artesanalmente con los mejores materiales para crear momentos inolvidables
           </p>
         </div>
-
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+        
+        {/* Filtros */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {PRODUCT_FILTERS.map((filter) => (
             <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all ${
-                activeCategory === category.id
-                  ? 'bg-amber-600 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+              className={`px-6 py-3 rounded-full font-secondary font-medium transition-all duration-300 ${
+                activeFilter === filter.id 
+                  ? 'bg-luan-gold-400 text-white shadow-gold transform scale-105' 
+                  : 'bg-white text-luan-black-700 border border-luan-cream-300 hover:border-luan-gold-300 hover:text-luan-gold-600'
               }`}
             >
-              {category.name}
+              {filter.label}
             </button>
           ))}
         </div>
-
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        {/* Grid de productos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-
-        {/* CTA */}
+        
+        {/* CTA para ver más */}
         <div className="text-center mt-16">
-          <p className="text-gray-600 mb-6">
-            ¿No encuentras lo que buscas? Podemos crear algo especial para ti.
-          </p>
-          <button className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
-            Solicitar Vela Personalizada
-          </button>
+          <Button size="large">
+            Ver Toda la Colección
+          </Button>
         </div>
       </div>
     </section>

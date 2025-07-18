@@ -1,151 +1,50 @@
 import React from 'react';
-import { Button } from '../ui';
+import { SERVICES_DATA } from '../../data/services';
+import Button from '../ui/Button';
 
 const Services = () => {
-  const services = [
-    {
-      icon: '🛍️',
-      title: 'Velas Personalizadas',
-      description: 'Creamos velas únicas según tus especificaciones, desde la fragancia hasta el diseño.',
-      features: ['Diseño personalizado', 'Fragancias a medida', 'Colores específicos', 'Formas especiales'],
-      price: 'Desde $45'
-    },
-    {
-      icon: '🎁',
-      title: 'Eventos Especiales',
-      description: 'Velas temáticas para bodas, cumpleaños, aniversarios y celebraciones especiales.',
-      features: ['Temáticas personalizadas', 'Packaging especial', 'Entrega puntual', 'Descuentos por volumen'],
-      price: 'Desde $30'
-    },
-    {
-      icon: '🏢',
-      title: 'Corporativo',
-      description: 'Velas corporativas con el logo y colores de tu empresa para eventos y regalos.',
-      features: ['Logo personalizado', 'Branding completo', 'Pedidos grandes', 'Facturación empresarial'],
-      price: 'Cotización'
-    },
-    {
-      icon: '📚',
-      title: 'Talleres',
-      description: 'Aprende a hacer tus propias velas en nuestros talleres prácticos y divertidos.',
-      features: ['Clases grupales', 'Materiales incluidos', 'Certificado', 'Te llevas tu vela'],
-      price: '$75 por persona'
-    },
-    {
-      icon: '🔧',
-      title: 'Mantenimiento',
-      description: 'Servicios de renovación y mantenimiento para tus velas favoritas.',
-      features: ['Recarga de cera', 'Cambio de mecha', 'Limpieza profunda', 'Garantía extendida'],
-      price: 'Desde $15'
-    },
-    {
-      icon: '📦',
-      title: 'Suscripción',
-      description: 'Recibe velas nuevas cada mes con nuestra suscripción mensual.',
-      features: ['Velas exclusivas', 'Envío gratuito', 'Fragancias estacionales', 'Cancela cuando quieras'],
-      price: '$39.99/mes'
-    }
-  ];
-
   return (
-    <section id="services" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
+    <section id="servicios" className="py-16 lg:py-24 bg-gradient-to-br from-luan-cream-50 to-luan-cream-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <span className="inline-block px-4 py-2 bg-luan-gold-100 text-luan-gold-700 rounded-full text-sm font-medium mb-4">
             Nuestros Servicios
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-heading font-medium text-luan-black-950 mb-4">
+            Soluciones <span className="bg-gradient-to-r from-luan-gold-500 to-luan-gold-700 bg-clip-text text-transparent">
+              Personalizadas
+            </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ofrecemos una amplia gama de servicios para satisfacer todas tus 
-            necesidades relacionadas con velas artesanales.
+          <p className="text-lg text-luan-black-700 max-w-3xl mx-auto">
+            Ofrecemos servicios especializados para eventos y necesidades específicas
           </p>
         </div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {services.map((service, index) => (
+        
+        {/* Servicios Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {SERVICES_DATA.map((service) => (
             <div 
-              key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100"
+              key={service.id}
+              className="bg-white p-8 rounded-3xl shadow-elegant hover:shadow-elegant-hover transition-all duration-300 border border-luan-cream-200"
             >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                {service.title}
-              </h3>
-              <p className="text-gray-600 mb-6">
-                {service.description}
-              </p>
-              
-              <ul className="space-y-2 mb-6">
-                {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center text-sm text-gray-700">
-                    <svg className="w-4 h-4 text-amber-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-amber-600">
-                  {service.price}
-                </span>
-                <Button size="sm">
-                  Solicitar
-                </Button>
-              </div>
+              <div className="text-4xl mb-6 text-luan-gold-500">{service.icon}</div>
+              <h3 className="font-secondary text-xl font-semibold text-luan-black-900 mb-4">{service.title}</h3>
+              <p className="text-sm text-luan-black-600 mb-6">{service.description}</p>
+              <button className="text-luan-gold-600 font-secondary font-medium flex items-center gap-2 hover:underline">
+                Ver más
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           ))}
         </div>
-
-        {/* Process Section */}
-        <div className="bg-gray-50 rounded-2xl p-12">
-          <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Nuestro Proceso
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-amber-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                1
-              </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Consulta</h4>
-              <p className="text-gray-600">Conversamos sobre tus necesidades y preferencias.</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-amber-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                2
-              </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Diseño</h4>
-              <p className="text-gray-600">Creamos un diseño personalizado para tu proyecto.</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-amber-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                3
-              </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Producción</h4>
-              <p className="text-gray-600">Elaboramos cuidadosamente tu vela artesanal.</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-amber-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                4
-              </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Entrega</h4>
-              <p className="text-gray-600">Te entregamos tu vela lista para disfrutar.</p>
-            </div>
-          </div>
-        </div>
-
+        
         {/* CTA */}
         <div className="text-center mt-16">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            ¿Listo para comenzar tu proyecto?
-          </h3>
-          <p className="text-gray-600 mb-8">
-            Contáctanos para una consulta gratuita y descubre cómo podemos ayudarte.
-          </p>
-          <Button size="lg">
-            Solicitar Consulta Gratuita
+          <Button size="large">
+            Solicita tu Cotización Personalizada
           </Button>
         </div>
       </div>
